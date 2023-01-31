@@ -42,9 +42,15 @@
     <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
     <%= f.password_field :current_password, autocomplete: "current-password" ,class: "form-control"%>
   </div>
+  
+  <div class="field mb-4">
+      <%= f.label :Image %>
+    <%= f.file_field :image, class: "form-control"%>
+    <%= f.hidden_field :image_cache %>
+  </div>
 
   <div class="actions">
-    <%= f.submit "Update" %>
+    <%= f.submit "Update", class: "btn btn-success form-control mb-4"%>
   </div>
 <% end %>
 
