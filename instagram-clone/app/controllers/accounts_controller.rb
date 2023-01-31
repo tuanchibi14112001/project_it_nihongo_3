@@ -13,4 +13,6 @@ class AccountsController < ApplicationController
         @account = Account.find_by_username(params[:username])
     end
     
+   
+    
 end
