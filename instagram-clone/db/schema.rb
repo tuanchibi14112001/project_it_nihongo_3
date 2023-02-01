@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_02_01_084804) do
+ActiveRecord::Schema.define(version: 2023_02_01_110931) do
 
   create_table "accounts", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -51,6 +51,8 @@ ActiveRecord::Schema.define(version: 2023_02_01_084804) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.text "description"
+    t.integer "total_likes_count"
+    t.integer "total_comments_count"
     t.index ["account_id"], name: "index_posts_on_account_id"
   end
 
