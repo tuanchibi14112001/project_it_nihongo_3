@@ -7,6 +7,6 @@ class Post < ApplicationRecord
     scope :active, -> { where active: true}
     
     def set_active
-            self.active = true
+      self.active = true
     end
 end
