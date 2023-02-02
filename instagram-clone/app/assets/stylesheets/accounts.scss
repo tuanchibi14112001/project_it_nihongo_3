@@ -26,11 +26,12 @@ body {
     height: 200px;
     border-radius: 50%;
 }
-.profile-stats{
-    width: 120px;
-    float: left;
+.profile-stats {
+    max-width: 360px;
+    margin-bottom: 30px;
+    /* float: left; */
 }
 
-.profile-posts{
+.profile-posts {
     margin-top: 40px;
 }

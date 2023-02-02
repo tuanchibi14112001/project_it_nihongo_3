@@ -7,17 +7,17 @@ class Account < ApplicationRecord
   mount_uploader :image, ImageUploader
   has_many :posts
   has_many :likes
-  
+
   def full_name
       "#{first_name} #{last_name}"
   end
   
-   def total_followers
-      0
+  def total_followers
+    Follower.where(following_id: self.id).count    
   end
   
   def total_following
-      0
+    Follower.where(follower_id: self.id).count
   end
 
 end
