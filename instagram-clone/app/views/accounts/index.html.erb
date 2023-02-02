@@ -13,7 +13,9 @@
           <div class="post-details">
             <div class="post-actions">
               <i class="<%= post_liked_by_user?(post.id) ? "fa" : "fa-regular" %> fa-heart like-<%= post.id %> fa-2x post-like" data-id="<%= post.id %>"></i>
-              <i class="fa-regular fa-comment fa-2x post-comment"></i>
+              <%= link_to post_path(post.id) do %>
+                <i class="fa-regular fa-comment fa-2x post-comment"></i>
+              <% end %>
             </div>
             <p><strong id="post-<%= post.id %>-likes"><%= post.total_likes_count %> likes</strong></p>
             <p><strong id="post-<%= post.id %>-comments"><%= link_to post.account.username, profile_path(post.account.username), class: "text-dark" %></strong></p>
@@ -40,12 +42,11 @@
     </div>
     <div class="col-4">
       <div class = "account-summary">
-        <p>
-          <%= link_to image_tag(current_account.image.url, width: "50px", height: "50px", class: "img-circle"), profile_path(current_account.username)  if current_account.image.present? %>
-          <strong><%= current_account.username %></strong>
+        <p class="m-0">
+          <%= link_to image_tag(current_account.image.url, width: "50px", height: "50px", class: "img-circle float-start m-r-15"), profile_path(current_account.username)  if current_account.image.present? %>
+          <strong><%= current_account.username %></strong><br />
+          <%= current_account.full_name %>
         </p>
-        
-        <p><%= current_account.full_name %></p>
       </div>
       <div class = "follower-suggestions">
         <%= link_to "View All", "#", class: "float-end text-dark" %>
