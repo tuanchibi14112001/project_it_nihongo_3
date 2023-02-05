@@ -2,7 +2,7 @@ class Account < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+         :recoverable, :rememberable, :validatable, :omniauthable, omniauth_providers: %i[facebook]
          
   mount_uploader :image, ImageUploader
   has_many :posts
@@ -18,6 +18,13 @@ class Account < ApplicationRecord
   
   def total_following
     Follower.where(follower_id: self.id).count
+  end
+
+  def self.from_omniauth(auth)
+    name_split = auth.info.name.split(" ")
+    account = Account.where(email: auth.info.email).first
+    account ||= Account.create!(provider: auth.provider, uid: auth.uid, last_name: name_split[0], first_name: name_split[1], email: auth.info.email, password: Devise.friendly_token[0, 20])
+      account
   end
 
 end

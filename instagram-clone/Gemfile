@@ -10,6 +10,8 @@ gem 'sqlite3', '~> 1.4'
 #gem 'pg', '~> 1.4', '>= 1.4.5'
 #user auth
 gem 'devise'
+gem 'omniauth-facebook'
+gem 'omniauth-rails_csrf_protection'
 
 #img
 #Uploads to Amazon S3
