@@ -34,7 +34,7 @@ class Account < ApplicationRecord
     unless account
       account = Account.create(username: data['name'],
         email: data['email'],
-        password: Devise.friendly_token[0,20],
+        password: "password",
         image: data['image']
       )
     end
