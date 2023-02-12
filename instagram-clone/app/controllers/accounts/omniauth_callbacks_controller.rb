@@ -1,17 +1,14 @@
 class Accounts::OmniauthCallbacksController < Devise::OmniauthCallbacksController
-  def facebook
-    @account = Account.from_omniauth(request.env["omniauth.auth"])
+  def github
+    # You need to implement the method below in your model (e.g. app/models/account.rb)
+    @account = Account.from_omniauth(request.env['omniauth.auth'])
 
     if @account.persisted?
-      sign_in_and_redirect @account, event: :authentication #this will throw if @account is not activated
-      set_flash_message(:notice, :success, kind: "Facebook") if is_navigational_format?
+      flash[:notice] = I18n.t 'devise.omniauth_callbacks.success', kind: 'Github'
+      sign_in_and_redirect @account, event: :authentication
     else
-      session["devise.facebook_data"] = request.env["omniauth.auth"].except(:extra) # Removing extra as it can overflow some session stores
-      redirect_to new_account_registration_url
+      session['devise.github_data'] = request.env['omniauth.auth'].except('extra') # Removing extra as it can overflow some session stores
+      redirect_to new_account_registration_url, alert: @account.errors.full_messages.join("\n")
     end
-  end
-
-  def failure
-    redirect_to root_path
   end
 end
